@@ -12,20 +12,17 @@ namespace Agenda
         private string      libelle;
         private DateTime    date;
         private int         frequence;
-        private SortedList<DateTime, Rappel> listeRappel;
 
         public Rappel(string libelle, DateTime date, int frequence)
         {
             this.libelle     = libelle;
             this.date        = date;
             this.frequence   = frequence;
-            this.listeRappel = new SortedList<DateTime, Rappel>();
         }
 
         public string Libelle { get => libelle; set => libelle = value; }
         public DateTime Date { get => date; set => date = value; }
         public int Frequence { get => frequence; set => frequence = value; }
-        internal SortedList<DateTime, Rappel> ListeRappel { get => listeRappel; set => listeRappel = value; }
 
         public void Suivant(int frequence)
         {
@@ -53,8 +50,33 @@ namespace Agenda
             }
         }
 
-
-
+        public string getNomFrequence(int frequence)
+        {
+            string nom = "";
+            switch (frequence)
+            {
+                case 0:
+                    nom = "Unique";
+                    break;
+                case 1:
+                    // Journalier
+                    nom = "Journalier";
+                    break;
+                case 2:
+                    // Hebdomadaire
+                    nom = "Hebdomadaire";
+                    break;
+                case 3:
+                    // Mensuel
+                    nom = "Mensuel";
+                    break;
+                case 4:
+                    // Annuel
+                    nom = "Annuel";
+                    break;
+            }
+            return nom;
+        }
 
     }
 }

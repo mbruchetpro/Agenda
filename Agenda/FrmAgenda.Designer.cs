@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgenda));
             this.grpRappel = new System.Windows.Forms.GroupBox();
             this.btnAjout = new System.Windows.Forms.Button();
             this.txtRappel = new System.Windows.Forms.TextBox();
@@ -49,6 +50,9 @@
             this.btnModif = new System.Windows.Forms.Button();
             this.lstEnsemble = new System.Windows.Forms.ListBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tmrRappel = new System.Windows.Forms.Timer(this.components);
+            this.icoAgenda = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btnMini = new System.Windows.Forms.Button();
             this.grpRappel.SuspendLayout();
             this.grpMaintenant.SuspendLayout();
             this.grpEnsemble.SuspendLayout();
@@ -226,6 +230,7 @@
             this.btnVider.TabIndex = 6;
             this.btnVider.Text = "Vider";
             this.btnVider.UseVisualStyleBackColor = true;
+            this.btnVider.Click += new System.EventHandler(this.btnVider_Click);
             // 
             // btnSuppr
             // 
@@ -235,6 +240,7 @@
             this.btnSuppr.TabIndex = 5;
             this.btnSuppr.Text = "Supprimer";
             this.btnSuppr.UseVisualStyleBackColor = true;
+            this.btnSuppr.Click += new System.EventHandler(this.btnSuppr_Click);
             // 
             // btnModif
             // 
@@ -244,23 +250,50 @@
             this.btnModif.TabIndex = 4;
             this.btnModif.Text = "Modifier";
             this.btnModif.UseVisualStyleBackColor = true;
+            this.btnModif.Click += new System.EventHandler(this.btnModif_Click);
             // 
             // lstEnsemble
             // 
+            this.lstEnsemble.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstEnsemble.FormattingEnabled = true;
             this.lstEnsemble.Location = new System.Drawing.Point(7, 28);
             this.lstEnsemble.Name = "lstEnsemble";
             this.lstEnsemble.Size = new System.Drawing.Size(489, 95);
             this.lstEnsemble.TabIndex = 4;
+            this.lstEnsemble.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstEnsemble_DrawItem);
+            // 
+            // tmrRappel
+            // 
+            this.tmrRappel.Enabled = true;
+            this.tmrRappel.Interval = 10000;
+            this.tmrRappel.Tick += new System.EventHandler(this.tmrRappel_Tick);
+            // 
+            // icoAgenda
+            // 
+            this.icoAgenda.Icon = ((System.Drawing.Icon)(resources.GetObject("icoAgenda.Icon")));
+            this.icoAgenda.Text = "Liste des rappels";
+            this.icoAgenda.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.icoAgenda_MouseDoubleClick);
+            // 
+            // btnMini
+            // 
+            this.btnMini.Location = new System.Drawing.Point(550, 112);
+            this.btnMini.Name = "btnMini";
+            this.btnMini.Size = new System.Drawing.Size(75, 23);
+            this.btnMini.TabIndex = 2;
+            this.btnMini.Text = "Minimiser";
+            this.btnMini.UseVisualStyleBackColor = true;
+            this.btnMini.Click += new System.EventHandler(this.btnMini_Click);
             // 
             // FrmAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 312);
+            this.Controls.Add(this.btnMini);
             this.Controls.Add(this.grpEnsemble);
             this.Controls.Add(this.grpMaintenant);
             this.Controls.Add(this.grpRappel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAgenda";
             this.Text = "Agenda";
             this.Load += new System.EventHandler(this.FrmAgenda_Load);
@@ -297,6 +330,9 @@
         private System.Windows.Forms.Button btnSuppr;
         private System.Windows.Forms.Button btnModif;
         private System.Windows.Forms.ListBox lstEnsemble;
+        private System.Windows.Forms.Timer tmrRappel;
+        private System.Windows.Forms.NotifyIcon icoAgenda;
+        private System.Windows.Forms.Button btnMini;
     }
 }
 
