@@ -4,10 +4,8 @@ PPE for my school.
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Maxime Bruchet** - *Travail initial* - [mbruchetpro](https://github.com/mbruchetpro)
 
-## Acknowledgments
+## Outils de développement
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* [Visual studio](https://www.visualstudio.com/fr/) - IDE utilisé
