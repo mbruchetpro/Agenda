@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Agenda
 {
+    /// <summary>
+    /// Class Rappel 
+    /// </summary>
     class Rappel
     {
 
@@ -13,6 +13,12 @@ namespace Agenda
         private DateTime    date;
         private int         frequence;
 
+        /// <summary>
+        /// Constructeur du rappel.
+        /// </summary>
+        /// <param name="libelle"></param>
+        /// <param name="date"></param>
+        /// <param name="frequence"></param>
         public Rappel(string libelle, DateTime date, int frequence)
         {
             this.libelle     = libelle;
@@ -20,10 +26,15 @@ namespace Agenda
             this.frequence   = frequence;
         }
 
+        // GETTERS AND SETTERS 
         public string Libelle { get => libelle; set => libelle = value; }
         public DateTime Date { get => date; set => date = value; }
         public int Frequence { get => frequence; set => frequence = value; }
 
+        /// <summary>
+        /// Permet de définir la date suivante en fonction de la fréquence.
+        /// </summary>
+        /// <param name="frequence"></param>
         public void Suivant(int frequence)
         {
             switch (frequence)
@@ -50,6 +61,11 @@ namespace Agenda
             }
         }
 
+        /// <summary>
+        /// Retourne le nom correspondant a la fréquence
+        /// </summary>
+        /// <param name="frequence"></param>
+        /// <returns></returns>
         public string getNomFrequence(int frequence)
         {
             string nom = "";

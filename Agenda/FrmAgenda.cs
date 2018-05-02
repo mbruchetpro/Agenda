@@ -6,10 +6,15 @@ namespace Agenda
 {
     public partial class FrmAgenda : Form
     {
+        // @SortedList<DateTime, Rappel> listeRappel est une liste des différent rappel courant. 
         private SortedList<DateTime, Rappel> listeRappel = new SortedList<DateTime, Rappel>();
 
+        //Timer permettant à la date et l'heure de se mettre a jour.
         Timer bg = new Timer();
 
+        /// <summary>
+        /// Initialisation des composants du formulaire.
+        /// </summary>
         public FrmAgenda()
         {
             InitializeComponent();
@@ -22,20 +27,24 @@ namespace Agenda
                 };
             bg.Interval = 500;
             bg.Start();
-
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                icoAgenda.Visible = true;
-
-                this.Hide();
-            }
+            //Fin mise à jour auto.
         }
 
+        /// <summary>
+        /// Au chargement de la page met par défaut le combobox a la valeur d'indice 1. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmAgenda_Load(object sender, EventArgs e)
         {
             cboFrequence.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Ajout de rappel dans la liste rappel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjout_Click(object sender, EventArgs e)
         {
             if ("" == txtRappel.Text)
@@ -70,7 +79,9 @@ namespace Agenda
             
         }
 
-
+        /// <summary>
+        /// Met à jour la lstEnsemble avec le contenu de la listeRappel.
+        /// </summary>
         private void majListeRappel()
         {
             lstEnsemble.Items.Clear();
@@ -81,13 +92,22 @@ namespace Agenda
             }
         }
 
+        /// <summary>
+        /// Vide la listBox lstEnsemble ainsi que la listeRappel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVider_Click(object sender, EventArgs e)
         {
             this.listeRappel.Clear();
             lstEnsemble.Items.Clear();
             
         }
-
+        /// <summary>
+        /// Supprime le rappel selectionner.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSuppr_Click(object sender, EventArgs e)
         {
             if (lstEnsemble.SelectedIndex != -1)
@@ -98,6 +118,12 @@ namespace Agenda
                 MessageBox.Show("Veuillez sélectionner un rappel à supprimer");
         }
 
+
+        /// <summary>
+        /// Modifie le rappel courant.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModif_Click(object sender, EventArgs e)
         {
             int k = lstEnsemble.SelectedIndex;
@@ -118,6 +144,12 @@ namespace Agenda
                 MessageBox.Show("Un élement de la liste doit être sélectionné");
         }
 
+        /// <summary>
+        /// Timer permettant de chercher toute les 10 secondes si il existe un ou plusieurs rappels
+        /// et le supprime et affiche un message d'alerte.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tmrRappel_Tick(object sender, EventArgs e)
         {
             int i = 0;
@@ -145,7 +177,11 @@ namespace Agenda
             }
         }
 
-
+        /// <summary>
+        /// Permet la supression d'un rappel dans la listeRappel 
+        /// et de mettre a jour lstEnsemble.
+        /// </summary>
+        /// <param name="indice"></param>
         private void supprRappel(int indice)
         {
             this.listeRappel.RemoveAt(indice);
@@ -153,14 +189,20 @@ namespace Agenda
             majListeRappel();
         }
 
+
+        /// <summary>
+        /// Permet de mettre des couleurs différente en fonction du type de fréquence.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstEnsemble_DrawItem(object sender, DrawItemEventArgs e)
         {
-                   
-            // Define the default color of the brush as black.
-            Brush myBrush = Brushes.Black;
 
-            // Determine the color of the brush to draw each item based 
-            // on the index of the item to draw.
+            // Define the default color of the brush as black.
+            //Définit la valeur de la couleur par défaut.
+            Brush myBrush = Brushes.Black;
+            
+            //Determine la couleur basé sur le type de fréquence.
             switch (listeRappel.Values[e.Index].Frequence)
             {
                 case 0:
@@ -186,6 +228,11 @@ namespace Agenda
                 e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
         }
 
+        /// <summary>
+        /// Minimise l'application.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMini_Click(object sender, EventArgs e)
         {
             icoAgenda.Visible = true;
@@ -193,6 +240,11 @@ namespace Agenda
             this.Hide();
         }
 
+        /// <summary>
+        /// Maximise l'application depuis l'icone minimisée.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void icoAgenda_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             icoAgenda.Visible = false;
