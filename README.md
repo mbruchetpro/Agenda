@@ -2,7 +2,7 @@
 
 PPE for my school.
 
-## Authors
+## Autheur
 
 * **Maxime Bruchet** - *Travail initial* - [mbruchetpro](https://github.com/mbruchetpro)
 
