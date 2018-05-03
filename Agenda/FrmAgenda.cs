@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using BiblioOutils;
+using WMPLib;
+using AxWMPLib;
 
 namespace Agenda
 {
@@ -17,6 +19,8 @@ namespace Agenda
         //Timer permettant à la date et l'heure de se mettre a jour.
         Timer bg = new Timer();
 
+        WindowsMediaPlayer player = new WindowsMediaPlayer();
+
         /// <summary>
         /// Initialisation des composants du formulaire.
         /// </summary>
@@ -24,6 +28,8 @@ namespace Agenda
         {
             InitializeComponent();
 
+            player.URL = "alert.mp3";
+            player.controls.stop();
             // Mettre à jour la date et l'heure automatiquement. 
             bg.Tick += (s, e) 
                 => {
@@ -43,8 +49,8 @@ namespace Agenda
         private void FrmAgenda_Load(object sender, EventArgs e)
         {
             cboFrequence.SelectedIndex = 1;
-
-
+            
+            
             // Chargement du fichier dans la liste. 
             Object fichier = OutilsSerialisation.Charger(nomFichier);
 
@@ -174,6 +180,8 @@ namespace Agenda
 
                 Rappel unRappel = listeRappel.Values[i];
 
+                player.controls.play();
+
                 MessageBox.Show("Votre rappel " + unRappel.getNomFrequence(unRappel.Frequence) + " : " + unRappel.Date + " " + unRappel.Libelle + " a été dépassée.");
 
                 if(unRappel.Frequence != 0)
@@ -188,7 +196,9 @@ namespace Agenda
                 }
                 else
                     supprRappel(i);
-                
+
+                player.controls.stop();
+
                 i = i++;
             }
         }
