@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using BiblioOutils;
+
 namespace Agenda
 {
     public partial class FrmAgenda : Form
     {
         // @SortedList<DateTime, Rappel> listeRappel est une liste des différent rappel courant. 
-        private SortedList<DateTime, Rappel> listeRappel = new SortedList<DateTime, Rappel>();
+        SortedList<DateTime, Rappel> listeRappel = new SortedList<DateTime, Rappel>();
+
+        // Nom Fichier serialisation.
+        private string nomFichier = "LesRappels";
 
         //Timer permettant à la date et l'heure de se mettre a jour.
         Timer bg = new Timer();
@@ -37,7 +42,17 @@ namespace Agenda
         /// <param name="e"></param>
         private void FrmAgenda_Load(object sender, EventArgs e)
         {
-            cboFrequence.SelectedIndex = 0;
+            cboFrequence.SelectedIndex = 1;
+
+
+            // Chargement du fichier dans la liste. 
+            Object fichier = OutilsSerialisation.Charger(nomFichier);
+
+            if (fichier != null)
+            {
+                listeRappel = (SortedList<DateTime, Rappel>)fichier;
+            }
+            majListeRappel();
         }
 
         /// <summary>
@@ -101,7 +116,7 @@ namespace Agenda
         {
             this.listeRappel.Clear();
             lstEnsemble.Items.Clear();
-            
+
         }
         /// <summary>
         /// Supprime le rappel selectionner.
@@ -137,6 +152,7 @@ namespace Agenda
                 txtRappel.Text = unRappel.Libelle;
 
                 cboFrequence.SelectedIndex = unRappel.Frequence;
+
 
                 supprRappel(k);
             }
@@ -185,7 +201,6 @@ namespace Agenda
         private void supprRappel(int indice)
         {
             this.listeRappel.RemoveAt(indice);
-
             majListeRappel();
         }
 
@@ -251,5 +266,16 @@ namespace Agenda
 
             this.Show();
         }
+
+        /// <summary>
+        /// Enregistrement à la fermeture de l'application.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmAgenda_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            OutilsSerialisation.Enregistrer(nomFichier, listeRappel);
+        }
+        
     }
 }

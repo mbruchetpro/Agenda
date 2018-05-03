@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BiblioOutils</name>
+    </assembly>
+    <members>
+        <member name="T:BiblioOutils.OutilBd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BiblioOutils.OutilBd.Connection(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="dbName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BiblioOutils.VerifSaisie">
+            <summary>
+                Class VerifSaisie -- Contrôle la saisie et Vérifie
+            </summary>
+        </member>
+        <member name="M:BiblioOutils.VerifSaisie.SaisieInt(System.String)">
+            <summary>
+                Verification saisie d'un entier. 
+            </summary>
+            <param name="question"> type : string </param>
+            <returns> retour : Entier </returns>
+        </member>
+        <member name="M:BiblioOutils.VerifSaisie.SaisieDouble(System.String)">
+            <summary>
+                Verification saisie d'un double. 
+            </summary>
+            <param name="question"> type : string </param>
+            <returns> Retour : Double </returns>
+        </member>
+        <member name="M:BiblioOutils.VerifSaisie.SaisieFloat(System.String)">
+            <summary>
+                Verification saisie d'un float. 
+            </summary>
+            <param name="question"> type : string</param>
+            <returns>Retour float</returns>
+        </member>
+    </members>
+</doc>

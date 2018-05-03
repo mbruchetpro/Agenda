@@ -296,6 +296,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAgenda";
             this.Text = "Agenda";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAgenda_FormClosing);
             this.Load += new System.EventHandler(this.FrmAgenda_Load);
             this.grpRappel.ResumeLayout(false);
             this.grpRappel.PerformLayout();

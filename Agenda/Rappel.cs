@@ -6,6 +6,7 @@ namespace Agenda
     /// <summary>
     /// Class Rappel 
     /// </summary>
+    [Serializable]
     class Rappel
     {
 
